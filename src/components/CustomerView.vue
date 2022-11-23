@@ -1,16 +1,16 @@
 <template>
-<PageHeader />
+<PageHeader></PageHeader>
 <div id="wrapper">
  <ViewSplitter>
     <SplitterPanel :size="20" >
-        <FilterForm @filterCustomerInput="filterEvent" />
+        <FilterForm @filterCustomerInput="filterEvent" @reloadCustomerTable="fetchCustomers" />
     </SplitterPanel>
     <SplitterPanel :size="80" :min-size="75" >
         <CustomerTable v-bind:customers="customers"/>
     </SplitterPanel>
- </ViewSplitter>
- <PageFooter />
+ </ViewSplitter> 
  </div>
+ <PageFooter />
 </template>
 
 <script>
@@ -28,25 +28,21 @@ export default {
         }
     },
     components: {
-        CustomerTable,
-        FilterForm,
-        PageHeader,
-        PageFooter
-    }, 
+    CustomerTable,
+    FilterForm,    
+    PageFooter,
+    PageHeader
+}, 
     methods: {
-        filterEvent(filter){
-            console.log("from parent:", filter)
+        filterEvent(filter){            
             this.fetchCustomerByFilter(filter)
         },
-        async fetchCustomers(){
-            console.log("fetching data")
-            const data = await CustomerService.getAllCustomers()
-            console.log("fetched in parent", data)
+        async fetchCustomers(){            
+            const data = await CustomerService.getAllCustomers()            
             this.customers = data
         },
         async fetchCustomerByFilter(filter){
-            const data = await CustomerService.getCustomersByFilter(filter)
-            console.log("after filter response:", data)
+            const data = await CustomerService.getCustomersByFilter(filter)            
             this.customers = data
         }
     },

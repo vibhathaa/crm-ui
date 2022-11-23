@@ -11,7 +11,7 @@
         <InputText id="id" type="text" placeholder="ID" v-model="id" @keydown.space.prevent  />        
 
         <InputCalendar v-model="date" placeholder="Creation Date Range" inputId="basic" type="date"
-            :showTime="flase" dateFormat="dd.mm.yy" autocomplete="off" />
+            :showTime="false" dateFormat="dd.mm.yy" autocomplete="off" />
 
         <br />
         <br />
@@ -48,8 +48,7 @@ export default {
                 contact: this.contact,
                 id: this.id,
                 createdTimestamp: this.date
-            }
-            console.log("filter value:", filterParams)
+            }            
             this.$emit("filterCustomerInput", filterParams)
         },
         formReset(){
@@ -57,9 +56,10 @@ export default {
             this.contact = null
             this.id = null
             this.createdTimestamp = null 
+            this.$emit("reloadCustomerTable")
         }    
     },
-    emits: ['filterCustomerInput'],
+    emits: ['filterCustomerInput', 'reloadCustomerTable'],
     name: "FilterForm",
 }
 </script>

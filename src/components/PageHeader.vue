@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="header-above">
       <h1> CRM System</h1>
     </div>
 </template>
@@ -11,5 +11,7 @@
 </script>
 
 <style scoped>
-
+  #header-above{
+    border: 1px;
+  }
 </style>

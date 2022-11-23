@@ -1,48 +1,74 @@
-<template>
-    <PageHeader/>
+<template>  
+    <PageHeader></PageHeader>
     <div id="wrapper">
         <ViewDivider align="center">
                 <span class="p-tag">Customer</span>
         </ViewDivider>
-        <CustomerInfo/>
+        <CustomerInfo v-bind:customer=customer @reloadCustomer="fetchCustomerInfo"/>
             <ViewDivider align="center">
                 <span class="p-tag">oppurtunities</span>
-            </ViewDivider>
-        <OppurtunityList v-bind:oppurtunities=OppurtunityList />
+            </ViewDivider> 
+        <div v-if=opportunities>
+            <OppurtunityList v-bind:oppurtunities=opportunities  @reloadOpportunityList="fetchOpportunities"/>
+        </div> 
+        <div v-else>
+
+        </div>
+
+        
     </div>
     <PageFooter/>
 </template>
 
 <script>
 import PageFooter from './PageFooter.vue';
-import PageHeader from './PageHeader.vue';
+//import PageHeader from './PageHeader.vue';
 import CustomerInfo from './CustomerInfo.vue';
 import OppurtunityList from './OppurtunityList.vue';
+import CustomerService from '@/service/CustomerService';
+import OpportunityService from '@/service/OpportunityService';
+import PageHeader from './PageHeader.vue';
 
 
 export default {
     name: "CustomerDetail",
+    components: {
+    PageFooter,
+    CustomerInfo,
+    OppurtunityList,
+    PageHeader
+},
     data (){
         return {
-            OppurtunityList : null
+            opportunities : null,
+            customer : null,            
         }
     },
     props: {
-        id: String
+        id : String
+    },    
+    methods: {
+        async fetchCustomerInfo(){
+            const data = await CustomerService.getCustomerById(this.id)  
+            this.customer = data   
+              
+        },
+        async fetchOpportunities(){
+            const data = await OpportunityService.getOppurtunitiesByCustomerId(this.id)
+            data.forEach((item)=>{
+                item.customer_id = this.id
+            })            
+            this.opportunities = data
+        }
+            
     },
-    mounted() {
-        console.log("customer received:", this.id);
-        this.OppurtunityList = [
-                {'id':1 , 'name': 'Oppurtunity1', 'status': 'won'},
-                {'id':2 , 'name': 'Oppurtunity2', 'status': 'won-closed'},
-                {'id':3 , 'name': 'Oppurtunity3', 'status': 'lost'},
-                {'id':4 , 'name': 'Oppurtunity2', 'status': 'won-closed'},
-                {'id':5 , 'name': 'Oppurtunity3', 'status': 'lost'},
-                {'id':6 , 'name': 'Oppurtunity2', 'status': 'won-closed'},
-                {'id':7 , 'name': 'Oppurtunity3', 'status': 'lost'},
-            ]
+    created(){
+        this.fetchCustomerInfo();        
+        this.fetchOpportunities();
     },
-    components: { PageHeader, PageFooter, CustomerInfo, OppurtunityList }
+    mounted() {           
+    }
+    
 }
 </script>
 

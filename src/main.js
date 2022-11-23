@@ -22,6 +22,7 @@ import FieldSet from "primevue/fieldset"
 import Divider from 'primevue/divider';
 import ToolBar from 'primevue/toolbar';
 import Dialog from "primevue/dialog";
+import SelectButton from 'primevue/selectbutton'
 
 
 import 'bootstrap'; 
@@ -45,6 +46,7 @@ app.component("ListBox", Listbox)
 app.component("ViewDivider", Divider)
 app.component("ViewToolbar", ToolBar)
 app.component("ViewDialog", Dialog)
+app.component("SelectButoon",SelectButton)
 
 app.mount('#app')
 

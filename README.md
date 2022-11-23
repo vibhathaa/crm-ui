@@ -1,4 +1,5 @@
 # crm-ui
+This project is the frontend UI for CRM application.
 
 ## Project setup
 ```
@@ -22,3 +23,6 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+###Modifications
+

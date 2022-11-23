@@ -12,6 +12,8 @@
 
 <style scoped>
   #header-above{
-    border: 1px;
+    border: 1px solid;
+    border-radius: 5px;
+    margin: 5px;
   }
 </style>

@@ -14,7 +14,7 @@
         <template #body="slotProps">
             <InputButton  icon="pi pi-pencil"  class="p-button-rounded p-button-success" @click="showEditOppurtunity(slotProps.data)" /> 
             <br>
-            <InputButton  icon="pi pi-trash" class="p-button-rounded p-button-danger" @click="showDeleteOppurtunity(slotProps.data)" />                       
+            <InputButton  icon="pi pi-trash" class="p-button-rounded p-button-danger" @click="showNotSupported()" />                       
         </template>
         </DataColumn>
     </DataTable>    
@@ -44,6 +44,10 @@
         
         
     </ViewDialog>
+
+    <ViewDialog v-model:visible="notSupportedDialog" header="Not supported" :modal="true" class="p-fluid">
+        <p> Sorry this functionality is not yet supported</p>
+    </ViewDialog>  
 
         
     <ViewDialog v-model:visible="editOppurtunityDialog" header="Edit Oppurtunity" :modal="true" class="p-fluid">
@@ -94,6 +98,7 @@ import OpportunityService from '@/service/OpportunityService'
                 newOppurtunityDialog: false,
                 editOppurtunityDialog: false,
                 deleteOppurtunityDialog: false,
+                notSupportedDialog: false,
                 submitted: false,
                 oppurtunity: {                   
                     id: null,
@@ -140,6 +145,9 @@ import OpportunityService from '@/service/OpportunityService'
 
                 this.deleteOppurtunityDialog = true
             },
+            showNotSupported(){
+                this.deleteOppurtunity()
+            },
             addOppurtunity(){                               
                 OpportunityService.addOppurtunity(this.customerId, { 
                                                                      'name' : this.BrandnewOppurtunity.name,
@@ -153,7 +161,7 @@ import OpportunityService from '@/service/OpportunityService'
                 this.editOppurtunityDialog = false                                                       
             },
             deleteOppurtunity(){
-
+                this.notSupportedDialog = true
             }
 
         },

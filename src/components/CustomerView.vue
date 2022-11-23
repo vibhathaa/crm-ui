@@ -1,16 +1,16 @@
 <template>
-<PageHeader></PageHeader>
-<div id="wrapper">
- <ViewSplitter>
-    <SplitterPanel :size="20" >
-        <FilterForm @filterCustomerInput="filterEvent" @reloadCustomerTable="fetchCustomers" />
-    </SplitterPanel>
-    <SplitterPanel :size="80" :min-size="75" >
-        <CustomerTable v-bind:customers="customers"/>
-    </SplitterPanel>
- </ViewSplitter> 
- </div>
- <PageFooter />
+    <PageHeader></PageHeader>
+    <div id="wrapper">
+        <ViewSplitter>
+            <SplitterPanel :size="20">
+                <FilterForm @filterCustomerInput="filterEvent" @reloadCustomerTable="fetchCustomers" />
+            </SplitterPanel>
+            <SplitterPanel :size="80" :min-size="75">
+                <CustomerTable v-bind:customers="customers" />
+            </SplitterPanel>
+        </ViewSplitter>
+    </div>
+    <PageFooter />
 </template>
 
 <script>
@@ -24,36 +24,36 @@ export default {
     name: "CustomerView",
     data() {
         return {
-            customers : null
+            customers: null
         }
     },
     components: {
-    CustomerTable,
-    FilterForm,    
-    PageFooter,
-    PageHeader
-}, 
+        CustomerTable,
+        FilterForm,
+        PageFooter,
+        PageHeader
+    },
     methods: {
-        filterEvent(filter){            
+        filterEvent(filter) {
             this.fetchCustomerByFilter(filter)
         },
-        async fetchCustomers(){            
-            const data = await CustomerService.getAllCustomers()            
+        async fetchCustomers() {
+            const data = await CustomerService.getAllCustomers()
             this.customers = data
         },
-        async fetchCustomerByFilter(filter){
-            const data = await CustomerService.getCustomersByFilter(filter)            
+        async fetchCustomerByFilter(filter) {
+            const data = await CustomerService.getCustomersByFilter(filter)
             this.customers = data
         }
     },
-    created(){
+    created() {
         this.fetchCustomers()
     }
 }
 </script>
 
 <style sco>
-#wrapper {    
+#wrapper {
     margin-left: 80px;
     margin-right: 80px;
     border: 0.5px solid black;

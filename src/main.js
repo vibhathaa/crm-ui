@@ -25,7 +25,7 @@ import Dialog from "primevue/dialog";
 import SelectButton from 'primevue/selectbutton'
 
 
-import 'bootstrap'; 
+import 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const app = createApp(App);
@@ -40,13 +40,13 @@ app.component('InputText', InputText);
 app.component('DropDown', Dropdown);
 app.component('InputCalendar', Calendar);
 app.component('InfoMessage', Message)
-app.component('InputButton',Button)
+app.component('InputButton', Button)
 app.component('FieldSet', FieldSet)
 app.component("ListBox", Listbox)
 app.component("ViewDivider", Divider)
 app.component("ViewToolbar", ToolBar)
 app.component("ViewDialog", Dialog)
-app.component("SelectButoon",SelectButton)
+app.component("SelectButoon", SelectButton)
 
 app.mount('#app')
 

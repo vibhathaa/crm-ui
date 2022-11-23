@@ -6,15 +6,16 @@ export default {
     get() {
         return Repository.get(`${resource_path}`)
     },
-    getById(customerId){
+    getById(customerId) {
         return Repository.get(`${resource_path}/${customerId}`)
     },
-    getByFilter(filter){
+    getByFilter(filter) {
         return Repository.get(`${resource_path}/getByFilter`, { params: filter })
     },
-    updateCustomerStatus(customerId, status){{
-        return Repository.put(`${resource_path}/`, null, { params: { customerId, status }})
-    }
+    updateCustomerStatus(customerId, status) {
+        {
+            return Repository.put(`${resource_path}/`, null, { params: { customerId, status } })
+        }
 
     }
 }

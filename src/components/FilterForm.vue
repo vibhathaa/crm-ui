@@ -2,16 +2,14 @@
     <div>
         <h3> Filter Customers</h3>
 
-        <InputText id="name" type="text" placeholder="name" v-model="name" @keydown.space.prevent
-             />
+        <InputText id="name" type="text" placeholder="name" v-model="name" @keydown.space.prevent />
 
-        <InputText id="contact" type="text" placeholder="contact" v-model="contact" @keydown.space.prevent
-             />
+        <InputText id="contact" type="text" placeholder="contact" v-model="contact" @keydown.space.prevent />
 
-        <InputText id="id" type="text" placeholder="ID" v-model="id" @keydown.space.prevent  />        
+        <InputText id="id" type="text" placeholder="ID" v-model="id" @keydown.space.prevent />
 
-        <InputCalendar v-model="date" placeholder="Creation Date Range" inputId="basic" type="date"
-            :showTime="false" dateFormat="dd.mm.yy" autocomplete="off" />
+        <InputCalendar v-model="date" placeholder="Creation Date Range" inputId="basic" type="date" :showTime="false"
+            dateFormat="dd.mm.yy" autocomplete="off" />
 
         <br />
         <br />
@@ -34,9 +32,9 @@ export default {
             id: null,
             date: null,
             status: null,
-            statusList : [
+            statusList: [
                 "Active",
-                "Non-Active", 
+                "Non-Active",
                 "Lead"
             ]
         }
@@ -48,16 +46,16 @@ export default {
                 contact: this.contact,
                 id: this.id,
                 createdTimestamp: this.date
-            }            
+            }
             this.$emit("filterCustomerInput", filterParams)
         },
-        formReset(){
+        formReset() {
             this.name = null
             this.contact = null
             this.id = null
-            this.createdTimestamp = null 
+            this.createdTimestamp = null
             this.$emit("reloadCustomerTable")
-        }    
+        }
     },
     emits: ['filterCustomerInput', 'reloadCustomerTable'],
     name: "FilterForm",
@@ -70,14 +68,12 @@ export default {
     margin: 6px;
     width: auto;
 }
-
 div {
     border: 0.5px solid black;
     border-radius: 5px;
     padding: 10px;
     align-content: center;
 }
-
 button {
     margin: 6px
 }

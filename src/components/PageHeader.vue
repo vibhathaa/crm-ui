@@ -1,12 +1,12 @@
 <template>
   <div id="header-above">
-    <h1> CRM System</h1>
+    <h1> CRM System </h1>
   </div>
 </template>
 
 <script>
 export default {
-  name: "PageHeader"
+  name: "PageHeader",  
 }
 </script>
 

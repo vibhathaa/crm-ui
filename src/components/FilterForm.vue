@@ -6,7 +6,7 @@
 
         <InputText id="contact" type="text" placeholder="contact" v-model="contact" @keydown.space.prevent />
 
-        <InputText id="id" type="text" placeholder="ID" v-model="id" @keydown.space.prevent />
+        <InputText id="id" type="number" placeholder="ID" v-model="id" @keydown.space.prevent />
 
         <InputCalendar v-model="date" placeholder="Creation Date Range" inputId="basic" type="date" :showTime="false"
             dateFormat="dd.mm.yy" autocomplete="off" />

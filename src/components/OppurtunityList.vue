@@ -43,17 +43,15 @@
         </div>
 
         <template #footer>
-            <InputButton label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog" />
+            <InputButton label="Cancel" icon="pi pi-times" class="p-button-text"  />
             <InputButton label="Save" icon="pi pi-check" class="p-button-text" @click="addOppurtunity" />
         </template>
-
 
     </ViewDialog>
 
     <ViewDialog v-model:visible="notSupportedDialog" header="Not supported" :modal="true" class="p-fluid">
         <p> Sorry this functionality is not yet supported</p>
     </ViewDialog>
-
 
     <ViewDialog v-model:visible="editOppurtunityDialog" header="Edit Oppurtunity" :modal="true" class="p-fluid">
         <div class="field">
@@ -76,7 +74,7 @@
         </div>
 
         <template #footer>
-            <InputButton label="Cancel" icon="pi pi-times" class="p-button-text" @click="hideDialog" />
+            <InputButton label="Cancel" icon="pi pi-times" class="p-button-text" />
             <InputButton label="Save" icon="pi pi-check" class="p-button-text" @click="editOppurtunity" />
         </template>
 
@@ -124,11 +122,7 @@ export default {
             customerId: null
         }
     },
-    props: {
-        oppurtunities: {
-            type: Object
-        }
-    },
+    props: ['oppurtunities'],
     methods: {
         showAddOppurtunity(data) {
 
@@ -162,22 +156,20 @@ export default {
             })
             this.$emit("reloadOpportunityList")
             this.newOppurtunityDialog = false
+            
         },
         editOppurtunity() {
             OpportunityService.editOppurtunity(this.oppurtunity.id, {
                 'name': this.oppurtunity.name,
                 'status': this.oppurtunity.status
             })
+            this.$emit("reloadOpportunityList")
             this.editOppurtunityDialog = false
         },
         deleteOppurtunity() {
             this.notSupportedDialog = true
         }
-
-    },
-    mounted() {
-    },
-
+    },  
     created() {
         this.customerId = this.$parent.customer.id
     },
